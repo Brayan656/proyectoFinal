@@ -1,6 +1,7 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+
 .example-container {
     display: flex;
     flex-direction: column;
@@ -9,9 +10,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-  }
+}
+
 .example-sidenav-content {
-    display: flex;
+    display: inline;
     height: 100%;
     align-items: center;
 }

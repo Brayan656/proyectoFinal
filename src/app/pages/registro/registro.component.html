@@ -1,0 +1,58 @@
+
+<div class="principal">
+    <div>
+        <button mat-flat-button color="primary" (click)="onClose()">
+            <mat-icon>
+                keyboard_return
+            </mat-icon>
+        </button>
+    </div>
+    <div class="form-contact">
+        
+            <span>
+                <h1>Iniciar sesion</h1>
+            </span>
+        
+        <br>
+        <div style="margin: 20px;">
+            <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Titulo</mat-label>
+                    <input matInput placeholder="Ej:Computadores a mitad de precio" formControlName="titulo">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Imagen</mat-label>
+                    <input matInput placeholder="Ej: https:://www.imagenPrueba.com/imagen" formControlName="url"[(ngModel)]="link">
+                </mat-form-field>
+                <img src="{{link}}" width="100px" height="100px">
+
+                <mat-form-field>
+                    <mat-label>Categoria</mat-label>
+                    <input matInput placeholder="Ej:Electronicos" formControlName="Categoria">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Precio</mat-label>
+                    <input type="number" matInput placeholder="Ej:23.99" formControlName="precio">
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput type="textarea" formControlName="mensaje"></textarea>
+                </mat-form-field>
+
+
+                <div style="text-align: center;">
+                    <button mat-icon-button type="submit">
+                        <mat-icon>save</mat-icon>
+                        <span>Registrar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>

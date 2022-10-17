@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="principal">
+    <div>
+        <button mat-flat-button color="primary" (click)="onClose()">
+            <mat-icon>
+                keyboard_return
+            </mat-icon>
+        </button>
+    </div>
+    <div class="form-contact">
+
+        <span style="color: blue;">
+            <h1>Iniciar sesion</h1>
+        </span>
+
+        <br>
+        <div style="margin: 20px;">
+            <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
+                <!--(ngSubmit)="insertUser($event)">-->
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="Ej:Pepe" formControlName="usuario">
+                </mat-form-field>
+                <br>
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput formControlName="contraseña">
+                </mat-form-field>
+
+                <div style="text-align: center;">
+                    <button mat-icon-button type="submit">
+                        <mat-icon>save</mat-icon>
+                        <span>Registrar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>

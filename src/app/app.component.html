@@ -28,7 +28,7 @@
 
   
 
-  <mat-drawer-container class="example-sidenav-content" autosize>
+  <mat-drawer-container class="example-sidenav-content"  >
 
     <mat-drawer #drawer style="width: 200px;" mode="side">
 
@@ -49,12 +49,17 @@
       <mat-divider></mat-divider>
 
     </mat-drawer>
-    
-  
-    <div class="example-sidenav-content">
+    <div >
       <router-outlet></router-outlet>
     </div>
-  
   </mat-drawer-container>
   
 </div>
+
+<!--{{title}}<br><br><br><br>-->
+<!--one wey binding, es solo taer la informacion del TS al html-->
+<!--<input type="text" [(ngModel)]="title">{{title}}<br><br>-->
+<!--two wey binding, es comunicar el
+html con el TS, es decir llevar info desde html a el TS-->
+<!--<input type="button" value="Click me" (click)="accion('s')">-->
+<!--<app-listar [variableX]="2222"></app-listar>-->

@@ -6,6 +6,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -17,6 +19,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatMenuModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports:[
     CommonModule,
@@ -26,6 +30,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatMenuModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class MaterialModule { }
