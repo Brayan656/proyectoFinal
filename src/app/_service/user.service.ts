@@ -27,4 +27,8 @@ export class UserService {
       "password": password
     });
   }
+
+  public validateToken(token: any){
+    return this.http.post<any>(this.url + 'ValidToken?token=' + token, null)
+  }
 }

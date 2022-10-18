@@ -9,12 +9,14 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddComponent } from './pages/products/add/add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
