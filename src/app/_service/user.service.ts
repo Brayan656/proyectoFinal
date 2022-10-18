@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public registro(user: User) {
-    return this.http.post<any>(this.url + 'Registro', {
+    return this.http.post<any>(this.url + 'Register', {
       "userName": user.userName,
       "userEmail": user.userEmail,
       "password": user.passwordHash

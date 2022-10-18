@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/_model/user';
+import { UserService } from 'src/app/_service/user.service';
 
 @Component({
   selector: 'app-registro',
@@ -9,37 +11,37 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
 
-  link!: string;
+  user!: User ;
 
   
   elemento = new FormGroup({
-    titulo: new FormControl(),
-    url: new FormControl(),
-    Categoria: new FormControl(),
-    precio: new FormControl(),
-    mensaje: new FormControl()
+    user: new FormControl(),
+    email: new FormControl(),
+    password: new FormControl(),
   });
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit(): void {
   }
-  onSubmit() {
-    /*
+  onSubmit() {  
+    this.user= new User()  
     //console.warn(this.elemento.value); 
-    this.ob.title=this.elemento.value.titulo;
-    this.ob.image=this.elemento.value.url;
-    //console.log(this.ob);
+    this.user.userName=this.elemento.value.user;
+    this.user.userEmail=this.elemento.value.email;
+    this.user.passwordHash=this.elemento.value.password;
+    //console.log(this.user);
 
-    this.tiendaFalsaService.crear(this.ob).subscribe(data=>{
+    this.userService.registro(this.user).subscribe(data=>{
       console.log(data);
       //this.data=data;
-    });*/
+    })
   }
 
   onClose(){
-    this.router.navigate(['/list']);
+    this.router.navigate(['/login']);
   }
 
 }
