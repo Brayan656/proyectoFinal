@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_model/user';
 
@@ -30,5 +31,12 @@ export class UserService {
 
   public validateToken(token: any){
     return this.http.post<any>(this.url + 'ValidToken?token=' + token, null)
+  }
+
+  public getName(email: string, password: string){
+    return this.http.post<any>(this.url + 'GetUserName', {
+      "userEmail": email,
+      "password": password
+    })
   }
 }

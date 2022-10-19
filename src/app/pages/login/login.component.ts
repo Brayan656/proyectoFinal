@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
     
   });
 
+  status: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private userService:UserService) { }
@@ -26,16 +28,18 @@ export class LoginComponent implements OnInit {
     sessionStorage.clear()
   }
 
-  onSubmit() {
-    console.warn(this.elemento.value); 
-    //console.log(this.ob);
+  onSubmit() { 
     let email=this.elemento.value.usuario;
     let password= this.elemento.value.contraseña;
+
     this.userService.login(email,password).subscribe(data=>{
       sessionStorage.setItem(environment.TOKEN, data.token)
-      console.log(data);
-      //this.data=data;
+      this.userService.getName(email, password).subscribe((response:any) => {
+        sessionStorage.setItem("username", response.name)
+      })
     });
+
+    this.router.navigate(['/'])
   }
 
   onClose(){

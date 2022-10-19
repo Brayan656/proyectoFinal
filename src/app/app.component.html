@@ -6,27 +6,37 @@
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
 
-    <h1 class="example-app-name">Aplicacion</h1>
+    <div *ngIf="name != null; else noLogged">
+      <h1 class="example-app-name">Bienvenido {{name}}</h1>
+    </div>
+
+    <ng-template #noLogged>
+      <h1 class="example-app-name">Tienda App</h1>
+    </ng-template>
 
     <span class="example-spacer"></span>
-    
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
 
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="">
-        <mat-icon>account_box</mat-icon>
-        <span>Mi Perfil</span>
+    <div *ngIf="name != null; else noLogged2">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button mat-menu-item routerLink="">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Cerrar Sesion</span>
-      </button>
-    </mat-menu>
+
+      <mat-menu #menu="matMenu">
+        <!-- <button mat-menu-item routerLink="">
+          <mat-icon>account_box</mat-icon>
+          <span>Mi Perfil</span>
+        </button> -->
+        <button mat-menu-item routerLink="" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesion</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <ng-template #noLogged2>
+      
+    </ng-template>
   </mat-toolbar>
-
-  
 
   <mat-drawer-container class="example-sidenav-content"  >
 
