@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
     let password= this.elemento.value.contraseña;
     this.router.navigate(['/'])
     this.userService.login(email, password).subscribe(data=>{
+      console.log(data)
       sessionStorage.setItem(environment.TOKEN, data.token)
-      this.userService.getName(email, password).subscribe((response:any) => {
-        sessionStorage.setItem("username", response.name)
-        location.reload()
-      })
+      sessionStorage.setItem("username", data.username.userName)
+      location.reload()
     });
   }
 
