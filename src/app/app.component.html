@@ -40,7 +40,7 @@
         <span>Ingresar</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item style="cursor: pointer;" routerLink="/registro">
+      <button *ngIf="!showLogout" mat-menu-item style="cursor: pointer;" routerLink="/registro">
         <mat-icon>group_add</mat-icon>
         <span>Registrarse</span>
       </button>
