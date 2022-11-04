@@ -26,6 +26,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   onSubmit() {  
     this.user= new User()  
     //console.warn(this.elemento.value); 
@@ -35,9 +36,10 @@ export class RegistroComponent implements OnInit {
     //console.log(this.user);
 
     this.userService.registro(this.user).subscribe(data=>{
-      console.log(data);
       //this.data=data;
     })
+
+    this.router.navigate(['/login']);
   }
 
   onClose(){

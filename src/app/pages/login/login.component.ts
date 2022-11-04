@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     let email=this.elemento.value.usuario;
     let password= this.elemento.value.contraseña;
 
-    this.userService.login(email,password).subscribe(data=>{
+    this.userService.login(email, password).subscribe(data=>{
       sessionStorage.setItem(environment.TOKEN, data.token)
       this.userService.getName(email, password).subscribe((response:any) => {
         sessionStorage.setItem("username", response.name)
