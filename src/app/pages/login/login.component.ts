@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem(environment.TOKEN, data.token)
       this.userService.getName(email, password).subscribe((response:any) => {
         sessionStorage.setItem("username", response.name)
+        this.router.navigate(['/'])
       })
     });
 
-    this.router.navigate(['/'])
   }
 
   onClose(){

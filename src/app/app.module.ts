@@ -25,7 +25,7 @@ import { AddComponent } from './pages/products/add/add.component';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

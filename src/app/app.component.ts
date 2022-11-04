@@ -12,13 +12,15 @@ export class AppComponent implements OnInit{
   title = 'ptoyectoFinal';
   showFiller = false;
 
-  name: string | undefined;
+  name: string = "Tienda App";
 
   constructor(private router: Router){}
   
   ngOnInit() {
     if (sessionStorage.getItem('username') != null){
-      this.name = sessionStorage.getItem('username')!
+      let _name = sessionStorage.getItem('username')!
+      if(_name != "" && _name != null)
+        this.name = `Bienvenido ${_name}`;
     }
   }
 

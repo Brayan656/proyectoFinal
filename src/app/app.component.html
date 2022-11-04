@@ -6,13 +6,10 @@
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
 
-    <div *ngIf="name != null; else noLogged">
-      <h1 class="example-app-name">Bienvenido {{name}}</h1>
+    <div>
+      <h1 class="example-app-name">{{name}}</h1>
     </div>
 
-    <ng-template #noLogged>
-      <h1 class="example-app-name">Tienda App</h1>
-    </ng-template>
 
     <span class="example-spacer"></span>
 
