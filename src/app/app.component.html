@@ -38,11 +38,15 @@
   <mat-drawer-container class="example-sidenav-content"  >
 
     <mat-drawer #drawer style="width: 200px;" mode="side">
-
-      <button mat-menu-item style="cursor: pointer;" routerLink="/login">
-        <mat-icon>input</mat-icon>
-        <span>Ingresar</span>
-      </button>
+      <div  *ngIf="name != null; else noLogin">
+        
+      </div>
+      <ng-template #noLogin>
+        <button mat-menu-item style="cursor: pointer;" routerLink="/login">
+          <mat-icon>input</mat-icon>
+          <span>Ingresar</span>
+        </button>
+      </ng-template>
       <mat-divider></mat-divider>
       <button mat-menu-item style="cursor: pointer;" routerLink="/registro">
         <mat-icon>group_add</mat-icon>
