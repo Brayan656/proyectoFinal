@@ -11,16 +11,17 @@ import { UserService } from './_service/user.service';
 export class AppComponent implements OnInit{
   title = 'ptoyectoFinal';
   showFiller = false;
+  showLogout = false;
 
   name: string = "Tienda App";
 
   constructor(private router: Router){}
   
   ngOnInit() {
-    if (sessionStorage.getItem('username') != null){
-      let _name = sessionStorage.getItem('username')!
-      if(_name != "" && _name != null)
-        this.name = `Bienvenido ${_name}`;
+    let _name = sessionStorage.getItem('username')!
+    if(_name != "" && _name != null){
+      this.name = `Bienvenido ${_name}`;
+      this.showLogout = true;
     }
   }
 

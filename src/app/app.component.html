@@ -13,7 +13,7 @@
 
     <span class="example-spacer"></span>
 
-    <div *ngIf="name != null; else noLogged2">
+    <div *ngIf="showLogout">
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -29,24 +29,16 @@
         </button>
       </mat-menu>
     </div>
-
-    <ng-template #noLogged2>
-      
-    </ng-template>
   </mat-toolbar>
 
   <mat-drawer-container class="example-sidenav-content"  >
 
     <mat-drawer #drawer style="width: 200px;" mode="side">
-      <div  *ngIf="name != null; else noLogin">
-        
-      </div>
-      <ng-template #noLogin>
-        <button mat-menu-item style="cursor: pointer;" routerLink="/login">
-          <mat-icon>input</mat-icon>
-          <span>Ingresar</span>
-        </button>
-      </ng-template>
+
+      <button *ngIf="!showLogout" mat-menu-item style="cursor: pointer;" routerLink="/login">
+        <mat-icon>input</mat-icon>
+        <span>Ingresar</span>
+      </button>
       <mat-divider></mat-divider>
       <button mat-menu-item style="cursor: pointer;" routerLink="/registro">
         <mat-icon>group_add</mat-icon>

@@ -31,15 +31,14 @@ export class LoginComponent implements OnInit {
   onSubmit() { 
     let email=this.elemento.value.usuario;
     let password= this.elemento.value.contraseña;
-
+    this.router.navigate(['/'])
     this.userService.login(email, password).subscribe(data=>{
       sessionStorage.setItem(environment.TOKEN, data.token)
       this.userService.getName(email, password).subscribe((response:any) => {
         sessionStorage.setItem("username", response.name)
-        this.router.navigate(['/'])
+        location.reload()
       })
     });
-
   }
 
   onClose(){
