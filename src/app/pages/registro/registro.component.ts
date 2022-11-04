@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_model/user';
 import { UserService } from 'src/app/_service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -36,7 +37,11 @@ export class RegistroComponent implements OnInit {
     //console.log(this.user);
 
     this.userService.registro(this.user).subscribe(data=>{
-      //this.data=data;
+      Swal.fire(
+        '',
+        'Usuario creado con éxito..',
+        'success'
+      )
     })
 
     this.router.navigate(['/login']);
