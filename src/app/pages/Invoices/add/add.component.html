@@ -1,1 +1,54 @@
-<p>add works!</p>
+<div class="container">
+    <div class="card" style="width: 100%; margin-top: 10px; box-shadow: 10px 10px 5px;">
+        <div class="card-body">
+            <div>
+                <button mat-flat-button color="primary" (click)="onClose()">
+                    <mat-icon>
+                        keyboard_return
+                    </mat-icon>
+                </button>
+            </div>
+
+            <div class="h1 text-center mt-4 mb-4">
+                Agregar Factura
+            </div>
+        
+            <form class="form-group" style="margin: 0px 20%" [formGroup]="form"> 
+                <div class="form-item">
+                    <label for="" class="form-label">Usario</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="userid">
+                        <option value="1">Juan</option>
+                        <option value="2">Pedro</option>
+                        <option value="3">Pepe</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label for="" class="form-label">Item</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="itemid" (change)="setUnitPrice($event.target)">
+                        <option value="1">Pan</option>
+                        <option value="2">Huevos</option>
+                        <option value="3">Leche</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label for="" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" formControlName="quantity">
+                </div>
+                <div class="form-item">
+                    <label for="" class="form-label">Precio unitario</label>
+                    <input type="number" class="form-control" formControlName="unitprice">
+                </div>
+                <div class="form-item">
+                    <label for="" class="form-label">Total</label>
+                    <input type="number" class="form-control" formControlName="invoicetotal">
+                </div>
+                <hr>
+                <div class="form-item">
+                    <button type="button" class="btn btn-success" style="width: 100%; padding: 8px;"
+                    [disabled]="!form.valid" (click)="onSave()">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

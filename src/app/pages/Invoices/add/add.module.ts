@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AddRoutingModule } from './add-routing.module';
 import { AddComponent } from './add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AddRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ], exports : [
     AddComponent
   ]

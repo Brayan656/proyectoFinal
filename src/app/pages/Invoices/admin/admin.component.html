@@ -1,1 +1,41 @@
-<p>admin works!</p>
+<div class="container">
+    <div class="card" style="width: 100%; margin-top: 10px;">
+        <div class="card-header" style="padding-bottom: 0px;">
+          <h2>Facturas</h2>
+        </div>
+        <div class="card-body">
+            <div style="display: flex; justify-content: end;">
+                <button type="button" class="btn btn-success" routerLink="add">Agregar</button>
+            </div>
+            <br>
+            <table class="table table-striped">
+                <thead class="table table-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <div *ngIf="invoices.length> 0; else mesagge">
+                    <tbody *ngFor="let invoice of invoices">
+                        
+                            <tr>
+                                <td>{{invoice.userid}}</td>
+                                <td>{{invoice.invoicedata}}</td>
+                                <td>{{invoice.invoicetotal}}</td>
+                                <td style="width: 20%;">
+                                <button class="btn btn-secondary" [routerLink]="['editarpersonaje', invoice.id]" style="margin-right: 5px;">Editar</button>
+                                <button class="btn btn-danger" (click)="deleteInvoice(invoice.id)">Eliminar</button>
+                                </td>
+                            </tr> 
+                    </tbody>
+                  </div>
+
+                  <ng-template #mesagge>
+                    <p style="font-size: 20px;padding: 10px;">No hay registros</p>
+                  </ng-template>
+            </table>
+        </div>
+    </div>
+</div>
