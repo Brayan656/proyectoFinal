@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.invoiceService.getInvoices().subscribe((data:any) =>{
       console.log(data);
+      this.invoices = data.invoices;
     }, err =>{
       console.log(err)
     })

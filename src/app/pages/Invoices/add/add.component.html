@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-item">
                     <label for="" class="form-label">Item</label>
-                    <select class="form-select" aria-label="Default select example" formControlName="itemid" (change)="setUnitPrice($event.target)">
+                    <select class="form-select" aria-label="Default select example" formControlName="itemid">
                         <option value="1">Pan</option>
                         <option value="2">Huevos</option>
                         <option value="3">Leche</option>
@@ -32,11 +32,11 @@
                 </div>
                 <div class="form-item">
                     <label for="" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" formControlName="quantity">
+                    <input type="number" class="form-control" formControlName="quantity" (change)="setUnitPrice()">
                 </div>
                 <div class="form-item">
                     <label for="" class="form-label">Precio unitario</label>
-                    <input type="number" class="form-control" formControlName="unitprice">
+                    <input type="number" class="form-control" formControlName="unitprice" (change)="setUnitPrice()">
                 </div>
                 <div class="form-item">
                     <label for="" class="form-label">Total</label>
