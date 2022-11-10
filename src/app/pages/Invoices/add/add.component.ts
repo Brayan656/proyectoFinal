@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InvoiceService } from 'src/app/_service/invoice.service';
+import { UserService } from 'src/app/_service/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,9 +16,10 @@ export class AddComponent implements OnInit {
 
   items: any[] = [];
   disabled:boolean = false;
+  usersList: any[] = []
 
   constructor(private route : Router,
-    private invoiceService : InvoiceService) { }
+    private invoiceService : InvoiceService, private user : UserService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -49,6 +51,12 @@ export class AddComponent implements OnInit {
 
   onClose(){
     this.route.navigate(['/invoice']);
+  }
+
+  getUsers(){
+    this.user.getUsers().subscribe((data:any) => {
+      this.usersList = data
+    })
   }
 
 }

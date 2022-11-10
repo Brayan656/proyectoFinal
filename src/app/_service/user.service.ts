@@ -39,4 +39,8 @@ export class UserService {
       "password": password
     })
   }
+
+  public getUsers(){
+    return this.http.get<any>(this.url + 'GetUsers')
+  }
 }

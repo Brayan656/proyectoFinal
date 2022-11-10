@@ -17,9 +17,9 @@
                 <div class="form-item">
                     <label for="" class="form-label">Usario</label>
                     <select class="form-select" aria-label="Default select example" formControlName="userid">
-                        <option value="1">Juan</option>
-                        <option value="2">Pedro</option>
-                        <option value="3">Pepe</option>
+                        <option *ngFor="let user of usersList" value="{{ user.userId }}">
+                            {{ user.userName }}
+                        </option>
                     </select>
                 </div>
                 <div class="form-item">
