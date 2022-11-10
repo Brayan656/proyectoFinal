@@ -22,6 +22,8 @@ export class AddComponent implements OnInit {
     private invoiceService : InvoiceService, private user : UserService) { }
 
   ngOnInit(): void {
+    this.getUsers()
+
     this.form = new FormGroup({
       userid : new FormControl(0),
       itemid : new FormControl('', Validators.required),
