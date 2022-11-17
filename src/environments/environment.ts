@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   HOST: 'https://localhost:7240/api/',
-  TOKEN: 'Token'
+  TOKEN: 'Token',
+  procuct: 'https://localhost:10000/',
 };
 
 
