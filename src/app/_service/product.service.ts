@@ -54,10 +54,13 @@ export class ProductService {
 //////////////////////////////////////// 
 
   //CREATE
-  public imageAdd(idPost:number,imagen:any){
+/*   public imageAdd(idPost:number,imagen:any){
     return this.http.post<any>(this.urlImagen+'save/'+idPost,{
       'file':imagen
     });
+  } */
+  public imageAdd(idPost:number,imagen:any){
+    return this.http.post<any>(this.urlImagen+'save/'+idPost, imagen);
   }
   //READ
   public imageListAll(){

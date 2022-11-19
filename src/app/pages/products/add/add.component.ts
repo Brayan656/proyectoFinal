@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/_model/product';
@@ -12,6 +12,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+
+
+  @ViewChild("fileInput") fileInput: any;
+
   producto!: Product;
   archivos:any=[]
   
@@ -20,7 +24,7 @@ export class AddComponent implements OnInit {
     descripcion: new FormControl(),
     precioUnidad: new FormControl(),
     stock: new FormControl(),
-    imagenes: new FormControl(),
+    imagenes: new FormControl('')    
   });
 
   constructor(private userService:UserService, 
@@ -57,17 +61,22 @@ export class AddComponent implements OnInit {
     this.producto.precioUnidad=this.elemento.value.precioUnidad;
     this.producto.stock=this.elemento.value.stock;
     
-    let img:File=this.elemento.value.imagenes;
-    console.log(img);
+    //let img:File=this.elemento.value.imagenes;
+    //console.log(img);
     let cantImagenes=this.archivos.length;
 
     
     //this.productService.productAdd(this.producto).subscribe((data:any)=>{
       //console.log(data.idProduct);
       //for (let i = 0; i < cantImagenes; i++) {
-        this.productService.imageAdd(1,this.elemento.value.imagenes).subscribe(img=>{
+
+        const formData = new FormData();
+        formData.append('imagenes', this.elemento.controls['imagenes'].value!);
+        formData.append('file', this.fileInput.nativeElement.files[0]);
+
+         this.productService.imageAdd(1,formData).subscribe(img=>{
           console.log(img);
-        });
+        }); 
       //}
       
     //});
@@ -96,6 +105,6 @@ export class AddComponent implements OnInit {
     for (let index = 0; index < cant; index++) {    
       this.archivos.push(images[index]);
     }
-    //console.log(this.archivos);
+    console.log(this.archivos);
   }
 }

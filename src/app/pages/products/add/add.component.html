@@ -39,7 +39,8 @@
                 <h2>
                 <mat-label >Imagenes</mat-label><br>
                 </h2>
-                    <input (change)="capturarFie($event)" type="file" multiple="true" formControlName="imagenes">
+<!--                     <input (change)="capturarFie($event)" type="file" multiple="true" formControlName="imagenes"> -->
+                    <input   #fileInput    formControlName="imagenes" type="file">
                 <mat-divider></mat-divider>
                 <br>
                 <div style="text-align: center;">
