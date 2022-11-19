@@ -1,1 +1,56 @@
-<p>add works!</p>
+<div class="principal">
+    <div>
+        <button mat-flat-button color="primary" (click)="onClose()">
+            <mat-icon>
+                keyboard_return
+            </mat-icon>
+        </button>
+    </div>
+    <div class="form-contact">
+        
+            <span>
+                <h1>Añadir un producto</h1>
+            </span>
+        
+        <br>
+        <div style="margin: 20px;">
+            <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Nombre del producto</mat-label>
+                    <input matInput placeholder="Ej: pepe grillo" formControlName="nombre">
+                </mat-form-field>
+                <br>
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Descripcion</mat-label>
+                    <input matInput placeholder="Ej: grilloP@hotmail.com" formControlName="descripcion">
+                </mat-form-field>
+                <br>
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Precio por unidad</mat-label>
+                    <input type="number" matInput formControlName="precioUnidad">
+                </mat-form-field>
+                <br>
+                <mat-form-field style="width: 90%;">
+                    <mat-label>Unidades disponibles</mat-label>
+                    <input type="number" matInput formControlName="stock">
+                </mat-form-field>
+                <br>
+                <mat-divider></mat-divider>
+                <h2>
+                <mat-label >Imagenes</mat-label><br>
+                </h2>
+                    <input (change)="capturarFie($event)" type="file" multiple="true" formControlName="imagenes">
+                <mat-divider></mat-divider>
+                <br>
+                <div style="text-align: center;">
+                    <button mat-icon-button type="submit">
+                        <mat-icon>save</mat-icon>
+                        <span>Guardar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>

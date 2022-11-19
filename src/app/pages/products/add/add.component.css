@@ -1,0 +1,80 @@
+.principal {
+    display: flex;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.contenedor {
+    display: block;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #a8e6cf;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-contact {
+    background: #FFF;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    box-shadow: 7px 13px 37px rgba(0, 0, 0, .8);
+}
+
+header {
+    width: 100%;
+    background: #ff165d;
+    overflow: hidden;
+    color: white;
+    font-size: small;
+}
+
+header span {
+    font-size: 100px;
+    display: block;
+    text-align: center;
+    padding: 1rem;
+}
+
+.contact {
+    padding: .8rem;
+    overflow: hidden;
+    color: gray;
+}
+
+.contact label,
+.contact input,
+.contact textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.contact label {
+    font-weight: 700;
+}
+
+.contact input:not([type='submit']),
+.contact textarea {
+    border: none;
+    border-bottom: 2px solid #ff165d;
+    margin-bottom: 10px;
+    font-size: 20px;
+    outline: none;
+    color: gray;
+}
+
+.contact textarea {
+    min-height: 100px;
+}

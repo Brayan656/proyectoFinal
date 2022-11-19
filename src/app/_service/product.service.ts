@@ -22,10 +22,10 @@ export class ProductService {
     });
   }
   //READ
-  public prodctlistAll(){
+  public productlistAll(){
     return this.http.get<any>(this.urlProduct+'findAll');
   }
-  public prodctlistById(id:number){
+  public productlistById(id:number){
     return this.http.get<any>(this.urlProduct+'findById/'+id);
   }
   public productListByName(name:String){
