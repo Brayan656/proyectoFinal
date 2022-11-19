@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://localhost:7240/api/',
-  TOKEN: 'Token'
+  HOST: 'https://localhost:7240/api/',
+  TOKEN: 'Token',
+  procuct: 'https://localhost:10000/',
 };
 
 
