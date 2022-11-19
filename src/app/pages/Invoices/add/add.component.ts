@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceService } from 'src/app/_service/invoice.service';
 import { UserService } from 'src/app/_service/user.service';
 import Swal from 'sweetalert2';
@@ -18,8 +18,14 @@ export class AddComponent implements OnInit {
   disabled:boolean = false;
   usersList: any[] = []
 
+  title:string = "Agregar Factura";
+  invoiceid:any;
+  
+
   constructor(private route : Router,
-    private invoiceService : InvoiceService, private user : UserService) { }
+    private invoiceService : InvoiceService, 
+    private user : UserService,
+    private curRoue: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getUsers()
@@ -31,7 +37,20 @@ export class AddComponent implements OnInit {
       quantity : new FormControl('', Validators.required),
       invoicetotal : new FormControl({value:'', disabled: true})
     })
+
+    this.getData();
   }
+
+  getData(){
+    this.invoiceid = this.curRoue.snapshot.paramMap.get('id');
+    if(this.invoiceid != null && this.invoiceid != ''){
+      this.title = "Editar factura n°"+this.invoiceid
+      this.invoiceService.getInvoice(this.invoiceid).subscribe((data:any) =>{
+        this.form.patchValue(data.invoices);
+      });
+    }
+  }
+
   setUnitPrice(){
     this.form.controls['invoicetotal'].setValue(
       Number(this.form.controls['unitprice'].value) * Number(this.form.controls['quantity'].value));
@@ -39,16 +58,32 @@ export class AddComponent implements OnInit {
 
   onSave(){
     this.form.controls['invoicetotal'].enable();
-    this.invoiceService.addInvoices(this.form.value).subscribe((data:any) =>{
-      Swal.fire(
-        '',
-        'Factura creada con éxito.',
-        'success'
-      )
-      this.route.navigate(['invoice']);
-    }, err =>{
-      console.log(err)
-    })
+
+    if(this.invoiceid != null && this.invoiceid != ''){
+      this.invoiceService.updateInvoice(this.invoiceid, this.form.value).subscribe((data:any) =>{
+        Swal.fire(
+          '',
+          'Factura acualizada con éxito.',
+          'success'
+        )
+        this.route.navigate(['invoice']);
+      }, err =>{
+        console.log(err)
+      })
+    }else{
+      this.invoiceService.addInvoice(this.form.value).subscribe((data:any) =>{
+        Swal.fire(
+          '',
+          'Factura creada con éxito.',
+          'success'
+        )
+        this.route.navigate(['invoice']);
+      }, err =>{
+        console.log(err)
+      })  
+    }
+
+    
   }
 
   onClose(){
