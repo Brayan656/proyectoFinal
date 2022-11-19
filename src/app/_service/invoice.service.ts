@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class InvoiceService {
 
-  private url: string = 'http://localhost:8000/api/invoices';
+  private url: string = 'http://localhost:2204/api/invoices';
   private haders: any;
 
   constructor(private http: HttpClient) {
@@ -21,7 +21,19 @@ export class InvoiceService {
     return this.http.get(this.url, {headers: this.haders});
   }
 
-  public addInvoices(invoice:any){
+  public getInvoice(id:any){
+    return this.http.get(`${this.url}/${id}`, {headers: this.haders});
+  }
+
+  public addInvoice(invoice:any){
     return this.http.post(this.url, JSON.stringify(invoice), {headers: this.haders});
+  }
+
+  public updateInvoice(id:any, invoice:any){
+    return this.http.put(`${this.url}/${id}`, JSON.stringify(invoice), {headers: this.haders});
+  }
+
+  public deleteInvoice(id:any){
+    return this.http.delete(`${this.url}/${id}`, {headers: this.haders});
   }
 }
