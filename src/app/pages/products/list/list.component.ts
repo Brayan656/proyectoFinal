@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/_service/product.service';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { EditComponent } from './edit/edit.component';
+import Swal from 'sweetalert2';
 
 export interface prod {
   idProduct: number;
@@ -61,7 +62,7 @@ export class ListComponent implements OnInit {
 
   updateButton(id:any){
     const dialogRef = this.dialog.open(EditComponent, {
-      width: '80%',
+      width: '30%',
       data: {id},
     });
 
@@ -88,23 +89,38 @@ export class ListComponent implements OnInit {
       window.alert('Pareces indeciso');
     }
     var age = prompt('How old are you?', '100');*/
-    let resultado = window.confirm('¿Esta seguro que desea eliminar este producto?');
-    if (resultado == true) {
-      this.productService.imageDeleteByPost(id).subscribe(data=>{
+
+
+
+    Swal.fire({
+      title: 'Está seguro de eliminar el producto?',
+      showDenyButton: true,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
         
-        if (data==null) {
-          //console.log('paso');
-          this.productService.productDeleteById(id).subscribe(d=>{
-            if (d==null) {
-              //console.log('paso');
-              window.alert('prosucto eliminado con exito')
-              this.getProd();
-            }
-          });
-        }
+        this.productService.imageDeleteByPost(id).subscribe(data=>{
         
-      });
-    }
+          if (data==null) {
+            //console.log('paso');
+            this.productService.productDeleteById(id).subscribe(d=>{
+              if (d==null) {
+                Swal.fire('Producto eliminado con exito', '', 'info')
+                this.getProd();
+              }
+            });
+          }
+          
+        });
+
+      } else if (result.isDenied) {
+        Swal.fire('Proceso cancelado', '', 'info')
+      }
+    })
+
+
   }
   
 

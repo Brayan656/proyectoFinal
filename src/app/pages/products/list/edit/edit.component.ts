@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Imagen } from 'src/app/_model/imagen';
 import { Product } from 'src/app/_model/product';
 import { ProductService } from 'src/app/_service/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit',
@@ -45,15 +46,7 @@ console.log(id)
   }
   getProduct(id:number){
     this.producService.productlistById(id).subscribe(data=>{
-
       this.elemento.patchValue(data);
-
-/*       this.produ.idProduct=data.idProduct;
-      this.produ.descripcion=data.descripcion;
-      this.produ.nombre=data.nombre;
-      this.produ.precioUnidad=data.precioUnidad;
-      this.produ.stock=data.stock;
-      console.log(data); */
       this.getImage(this.elemento.controls['idProduct'].value);
     });
   }
@@ -70,25 +63,30 @@ console.log(id)
   }
 
   onSubmit() {
-/*     this.p.idProduct=this.produ.idProduct;
-    this.p.nombre=this.elemento.value.nombre;
-    this.p.descripcion=this.elemento.value.descripcion;
-    this.p.precioUnidad=this.elemento.value.precioUnidad;
-    this.p.stock=this.elemento.value.stock; */
-
     const formData = new FormData();
         formData.append('imagenes', this.elemento.controls['imagen'].value!);
         formData.append('file', this.fileInput.nativeElement.files[0]);
-    console.log(this.imagen.idImagen)
-    console.log(formData)
-    this.producService.imageUpdate(this.imagen.idImagen,formData).subscribe(subir=>{
-      console.log(subir);
+
+    if(formData.get('file')!.length > 0 ){
       this.producService.prodctupdate(this.elemento.value).subscribe(datos=>{
-        console.log(datos);
-        window.alert("Producto actualizado correctamente");
+        Swal.fire(
+          '',
+          "Producto actualizado correctamente",
+          'success'
+        )
         this.router.navigate(['/list']);
       });
-    });
-
+    }else{
+      this.producService.imageUpdate(this.imagen.idImagen,formData).subscribe(subir=>{
+        this.producService.prodctupdate(this.elemento.value).subscribe(datos=>{
+          Swal.fire(
+            '',
+            "Producto actualizado correctamente",
+            'success'
+          )
+          this.router.navigate(['/list']);
+        });
+      });
+    }
   }
 }

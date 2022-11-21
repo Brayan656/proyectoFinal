@@ -3,34 +3,30 @@
         <h1>Editar el producto</h1>
     </span>
     <div>
-        <img src="data:image/jpg/png/jpeg;base64,{{imagen.imagen}}" width="20%">
-
-    </div>
-    <div>
         <div class="form-contact">
 
             <br>
             <div style="margin: 20px;">
                 <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
-                    <mat-form-field style="width: 50%;">
+                    <mat-form-field style="width: 100%;">
                         <mat-label>Nombre del producto</mat-label>
                         <input matInput placeholder="Ej: pepe grillo" formControlName="nombre" required="true"
                             >
                     </mat-form-field>
                     <br>
-                    <mat-form-field style="width: 50%;">
+                    <mat-form-field style="width: 100%;">
                         <mat-label>Descripcion</mat-label>
                         <input matInput placeholder="Ej: grilloP@hotmail.com" formControlName="descripcion"
                             required="true" >
                     </mat-form-field>
                     <br>
-                    <mat-form-field style="width: 50%;">
+                    <mat-form-field style="width: 100%;">
                         <mat-label>Precio por unidad</mat-label>
                         <input type="number" matInput formControlName="precioUnidad" required="true"
                             >
                     </mat-form-field>
                     <br>
-                    <mat-form-field style="width: 50%;">
+                    <mat-form-field style="width: 100%;">
                         <mat-label>Unidades disponibles</mat-label>
                         <input type="number" matInput formControlName="stock" required="true">
                     </mat-form-field>
@@ -39,6 +35,10 @@
                     <h2>
                         <mat-label>Cambiar imagen</mat-label><br>
                     </h2>
+                    <div>
+                        <img src="data:image/jpg/png/jpeg;base64,{{imagen.imagen}}" width="30%">
+                    </div>
+                    <br>
                     <input #fileInput formControlName="imagen" type="file" required="true" [(ngModel)]="imagen.imagen">
                     <mat-divider></mat-divider>
                     <br>
