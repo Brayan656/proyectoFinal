@@ -24,10 +24,10 @@
                 </div>
                 <div class="form-item">
                     <label for="" class="form-label">Item</label>
-                    <select class="form-select" aria-label="Default select example" formControlName="itemid">
-                        <option value="1">Pan</option>
-                        <option value="2">Huevos</option>
-                        <option value="3">Leche</option>
+                    <select class="form-select" aria-label="Default select example" formControlName="itemid" (change)="getItemById($event.target)">
+                        <option *ngFor="let item of itemList" value="{{ item.idProduct }}">
+                            {{ item.nombre }}
+                        </option>
                     </select>
                 </div>
                 <div class="form-item">

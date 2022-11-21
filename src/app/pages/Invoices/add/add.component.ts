@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceService } from 'src/app/_service/invoice.service';
 import { UserService } from 'src/app/_service/user.service';
 import Swal from 'sweetalert2';
+import { ProductService } from '../../../_service/product.service';
 
 @Component({
   selector: 'app-add',
@@ -16,19 +17,24 @@ export class AddComponent implements OnInit {
 
   items: any[] = [];
   disabled:boolean = false;
-  usersList: any[] = []
+  usersList: any[] = [];
+  itemList:any[] = [];
 
   title:string = "Agregar Factura";
   invoiceid:any;
+  qtyAvailable:any;
+  productName : any;
   
 
   constructor(private route : Router,
     private invoiceService : InvoiceService, 
     private user : UserService,
-    private curRoue: ActivatedRoute) { }
+    private curRoue: ActivatedRoute,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.getUsers()
+    this.getUsers();
+    this.getItems();
 
     this.form = new FormGroup({
       userid : new FormControl(0),
@@ -44,7 +50,7 @@ export class AddComponent implements OnInit {
   getData(){
     this.invoiceid = this.curRoue.snapshot.paramMap.get('id');
     if(this.invoiceid != null && this.invoiceid != ''){
-      this.title = "Editar factura n°"+this.invoiceid
+      this.title = "Editar factura N°"+this.invoiceid
       this.invoiceService.getInvoice(this.invoiceid).subscribe((data:any) =>{
         this.form.patchValue(data.invoices);
       });
@@ -59,28 +65,60 @@ export class AddComponent implements OnInit {
   onSave(){
     this.form.controls['invoicetotal'].enable();
 
+    if(this.form.controls['quantity'].value > this.qtyAvailable ){
+      Swal.fire(
+        '',
+        `El producto ${this.productName} tiene solo ${this.qtyAvailable} unidades disponibles`,
+        'warning'
+      )
+      this.form.controls['invoicetotal'].disable();
+      return;
+    }
+
     if(this.invoiceid != null && this.invoiceid != ''){
       this.invoiceService.updateInvoice(this.invoiceid, this.form.value).subscribe((data:any) =>{
-        Swal.fire(
-          '',
-          'Factura acualizada con éxito.',
-          'success'
-        )
-        this.route.navigate(['invoice']);
+        if(data.success){
+          Swal.fire(
+            '',
+            'Factura acualizada con éxito.',
+            'success'
+          )
+          this.route.navigate(['invoice']);
+        }else{
+          Swal.fire(
+            '',
+             data.message,
+            'error'
+          );
+          this.form.controls['invoicetotal'].disable();
+          return;
+        }
       }, err =>{
+        this.form.controls['invoicetotal'].disable();
         console.log(err)
-      })
+      });
     }else{
       this.invoiceService.addInvoice(this.form.value).subscribe((data:any) =>{
-        Swal.fire(
-          '',
-          'Factura creada con éxito.',
-          'success'
-        )
-        this.route.navigate(['invoice']);
+        if(data.success){
+          Swal.fire(
+            '',
+            'Factura creada con éxito.',
+            'success'
+          );
+          this.route.navigate(['invoice']);
+
+        }else{
+          Swal.fire(
+            '',
+             data.message,
+            'error'
+          );
+          this.form.controls['invoicetotal'].disable();
+          return;
+        }
       }, err =>{
         console.log(err)
-      })  
+      });
     }
 
     
@@ -93,6 +131,26 @@ export class AddComponent implements OnInit {
   getUsers(){
     this.user.getUsers().subscribe((data:any) => {
       this.usersList = data
+    })
+  }
+
+  getItems(){
+    this.productService.productlistAll().subscribe((data:any) => {
+      this.itemList = data
+    })
+  }
+
+  getItemById(id:any){
+    this.productService.productlistById(id.value).subscribe((data:any) => {
+      this.form.controls['unitprice'].setValue(data.precioUnidad);
+      this.qtyAvailable = data.stock;
+      this.productName = data.nombre;
+      Swal.fire(
+        '',
+        `El producto ${data.nombre} tiene ${data.stock} unidades disponibles`,
+        'success'
+      )
+      this.setUnitPrice();
     })
   }
 

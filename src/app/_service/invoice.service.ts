@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class InvoiceService {
 
-  private url: string = 'http://localhost:3306/api/invoices';
+  private url: string = 'http://localhost:8000/api/invoices';
   private haders: any;
 
   constructor(private http: HttpClient) {

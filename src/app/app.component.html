@@ -54,13 +54,13 @@
         <mat-icon>list_alt</mat-icon>
         <span>Facturas</span>
       </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item style="cursor: pointer;" routerLink="/add">
+      <mat-divider *ngIf="showLogout"></mat-divider>
+      <button  *ngIf="showLogout" mat-menu-item style="cursor: pointer;" routerLink="/add">
         <mat-icon>library_add</mat-icon>
         <span>Añadir producto</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item style="cursor: pointer;" routerLink="/list">
+      <button  *ngIf="showLogout" mat-menu-item style="cursor: pointer;" routerLink="/list">
         <mat-icon>storage</mat-icon>
         <span>Listar</span>
       </button>
