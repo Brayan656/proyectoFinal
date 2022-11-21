@@ -32,7 +32,7 @@ export class ProductService {
     return this.http.get<any>(this.urlProduct+'findByName/'+name);
   }
   //UPDATE
-  public prodctupdate(product:Product){
+  public prodctupdate(product:any){
     return this.http.put<any>(this.urlProduct+'update/'+product.idProduct,{
       "nombre": product.nombre,
       "descripcion":product.descripcion,

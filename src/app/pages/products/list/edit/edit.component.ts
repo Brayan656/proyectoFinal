@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/_service/product.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  public produ=new Product();
+  //public produ=new Product();
   public imagen=new Imagen();
 
   p=new Product();
@@ -40,18 +40,21 @@ export class EditComponent implements OnInit {
     console.log(this.data);
     let id:number=this.data.id;
 console.log(id)
-    //this.getProduct(id);
+    this.getProduct(id);
 
   }
   getProduct(id:number){
     this.producService.productlistById(id).subscribe(data=>{
-      this.produ.idProduct=data.idProduct;
+
+      this.elemento.patchValue(data);
+
+/*       this.produ.idProduct=data.idProduct;
       this.produ.descripcion=data.descripcion;
       this.produ.nombre=data.nombre;
       this.produ.precioUnidad=data.precioUnidad;
       this.produ.stock=data.stock;
-      console.log(data);
-      this.getImage(this.produ.idProduct);
+      console.log(data); */
+      this.getImage(this.elemento.controls['idProduct'].value);
     });
   }
   getImage(id:number){
@@ -67,19 +70,20 @@ console.log(id)
   }
 
   onSubmit() {
-    this.p.idProduct=this.produ.idProduct;
+/*     this.p.idProduct=this.produ.idProduct;
     this.p.nombre=this.elemento.value.nombre;
     this.p.descripcion=this.elemento.value.descripcion;
     this.p.precioUnidad=this.elemento.value.precioUnidad;
-    this.p.stock=this.elemento.value.stock;
+    this.p.stock=this.elemento.value.stock; */
 
     const formData = new FormData();
         formData.append('imagenes', this.elemento.controls['imagen'].value!);
         formData.append('file', this.fileInput.nativeElement.files[0]);
-
+    console.log(this.imagen.idImagen)
+    console.log(formData)
     this.producService.imageUpdate(this.imagen.idImagen,formData).subscribe(subir=>{
       console.log(subir);
-      this.producService.prodctupdate(this.p).subscribe(datos=>{
+      this.producService.prodctupdate(this.elemento.value).subscribe(datos=>{
         console.log(datos);
         window.alert("Producto actualizado correctamente");
         this.router.navigate(['/list']);
