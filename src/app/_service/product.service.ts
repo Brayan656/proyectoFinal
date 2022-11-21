@@ -33,7 +33,7 @@ export class ProductService {
   }
   //UPDATE
   public prodctupdate(product:Product){
-    this.http.put<any>(this.urlProduct+'update/'+product.idProduct,{
+    return this.http.put<any>(this.urlProduct+'update/'+product.idProduct,{
       "nombre": product.nombre,
       "descripcion":product.descripcion,
       "precioUnidad": product.precioUnidad,
@@ -73,10 +73,13 @@ export class ProductService {
     return this.http.get<any>(this.urlImagen+'findAById/'+id);
   }
   //UPDATE
-  public imageUpdate(id:number,imagen:any){
+ /* public imageUpdate(id:number,imagen:any){
     return this.http.put<any>(this.urlImagen+'update/'+id,{
       'file':imagen
     });
+  }*/
+  public imageUpdate(id:number,imagen:any){
+    return this.http.put<any>(this.urlImagen+'update/'+id, imagen);
   }
   //DELETE
   public imageDeleteAll(){

@@ -1,4 +1,5 @@
 <div class="principal">
+
     <div>
         <button mat-flat-button color="primary" (click)="onClose()">
             <mat-icon>
@@ -7,40 +8,40 @@
         </button>
     </div>
     <div class="form-contact">
-        
-            <span>
-                <h1>Añadir un producto</h1>
-            </span>
-        
+
+        <span>
+            <h1>Añadir un producto</h1>
+        </span>
+
         <br>
         <div style="margin: 20px;">
             <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
                 <mat-form-field style="width: 90%;">
                     <mat-label>Nombre del producto</mat-label>
-                    <input matInput placeholder="Ej: pepe grillo" formControlName="nombre">
+                    <input matInput placeholder="Ej: pepe grillo" formControlName="nombre" required="true">
                 </mat-form-field>
                 <br>
                 <mat-form-field style="width: 90%;">
                     <mat-label>Descripcion</mat-label>
-                    <input matInput placeholder="Ej: grilloP@hotmail.com" formControlName="descripcion">
+                    <input matInput placeholder="Ej: grilloP@hotmail.com" formControlName="descripcion" required="true">
                 </mat-form-field>
                 <br>
                 <mat-form-field style="width: 90%;">
                     <mat-label>Precio por unidad</mat-label>
-                    <input type="number" matInput formControlName="precioUnidad">
+                    <input type="number" matInput formControlName="precioUnidad" required="true">
                 </mat-form-field>
                 <br>
                 <mat-form-field style="width: 90%;">
                     <mat-label>Unidades disponibles</mat-label>
-                    <input type="number" matInput formControlName="stock">
+                    <input type="number" matInput formControlName="stock" required="true">
                 </mat-form-field>
                 <br>
                 <mat-divider></mat-divider>
                 <h2>
-                <mat-label >Imagenes</mat-label><br>
+                    <mat-label>Imagenes</mat-label><br>
                 </h2>
-<!--                     <input (change)="capturarFie($event)" type="file" multiple="true" formControlName="imagenes"> -->
-                    <input   #fileInput    formControlName="imagenes" type="file">
+                <!--<input (change)="capturarFie($event)" type="file" multiple="true" formControlName="imagenes"> -->
+                <input #fileInput formControlName="imagenes" type="file" required="true">
                 <mat-divider></mat-divider>
                 <br>
                 <div style="text-align: center;">

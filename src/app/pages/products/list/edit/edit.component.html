@@ -1,0 +1,57 @@
+<div style="display: inline-block;">
+    <span>
+        <h1>Editar el producto</h1>
+    </span>
+    <div>
+        <img src="data:image/jpg/png/jpeg;base64,{{imagen.imagen}}" width="20%">
+
+    </div>
+    <div>
+        <div class="form-contact">
+
+            <br>
+            <div style="margin: 20px;">
+                <form [formGroup]="elemento" (ngSubmit)="onSubmit()">
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Nombre del producto</mat-label>
+                        <input matInput placeholder="Ej: pepe grillo" formControlName="nombre" required="true"
+                            [(ngModel)]="produ.nombre">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Descripcion</mat-label>
+                        <input matInput placeholder="Ej: grilloP@hotmail.com" formControlName="descripcion"
+                            required="true" [(ngModel)]="produ.descripcion">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Precio por unidad</mat-label>
+                        <input type="number" matInput formControlName="precioUnidad" required="true"
+                            [(ngModel)]="produ.precioUnidad">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Unidades disponibles</mat-label>
+                        <input type="number" matInput formControlName="stock" required="true" [(ngModel)]="produ.stock">
+                    </mat-form-field>
+                    <br>
+                    <mat-divider></mat-divider>
+                    <h2>
+                        <mat-label>Cambiar imagen</mat-label><br>
+                    </h2>
+                    <input #fileInput formControlName="imagenes" type="file" required="true" [(ngModel)]="imagen.imagen">
+                    <mat-divider></mat-divider>
+                    <br>
+                    <div style="text-align: center;">
+                        <button mat-icon-button type="submit">
+                            <mat-icon>save</mat-icon>
+                            <span>Guardar</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

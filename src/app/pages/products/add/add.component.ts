@@ -66,7 +66,7 @@ export class AddComponent implements OnInit {
     let cantImagenes=this.archivos.length;
 
     
-    //this.productService.productAdd(this.producto).subscribe((data:any)=>{
+    this.productService.productAdd(this.producto).subscribe((data:any)=>{
       //console.log(data.idProduct);
       //for (let i = 0; i < cantImagenes; i++) {
 
@@ -74,37 +74,22 @@ export class AddComponent implements OnInit {
         formData.append('imagenes', this.elemento.controls['imagenes'].value!);
         formData.append('file', this.fileInput.nativeElement.files[0]);
 
-         this.productService.imageAdd(1,formData).subscribe(img=>{
+        this.productService.imageAdd(data.idProduct,formData).subscribe(img=>{
           console.log(img);
+          this.router.navigate(['/list']);
         }); 
       //}
       
-    //});
+    });
     
 
-    //this.router.navigate(['/list']);
+    
   }
 
   onClose(){
-    //this.router.navigate(['/list']);
+    this.router.navigate(['/list']);
   }
 
 
-  public capturarFie(event: any):any{
-    //console.log(event.target.files);
-    if (this.archivos.length>0) {
-      for (let index = 0; index <= this.archivos.length; index++) {
-        this.archivos.pop();
-      }
-    }
-    //console.log(this.archivos.length);
-
-    let cant =event.target.files.length
-    
-    let images:any=event.target.files;
-    for (let index = 0; index < cant; index++) {    
-      this.archivos.push(images[index]);
-    }
-    console.log(this.archivos);
-  }
+  
 }

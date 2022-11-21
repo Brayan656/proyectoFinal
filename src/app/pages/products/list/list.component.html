@@ -1,1 +1,85 @@
-<p>list works!</p>
+<div style="text-align: center;">
+    <h1>Productos de la tienda</h1>
+</div>
+<div style="display: flex;justify-content: center;">
+    <button mat-button color="primary" routerLink="/add">
+        <mat-icon>
+            add_circle
+        </mat-icon>
+        Agregar
+    </button>
+</div>
+<div>
+    <mat-form-field appearance="standard">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ej: aviones" #input>
+      </mat-form-field>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+        <!-- id producto -->
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Id </th>
+          <td mat-cell *matCellDef="let element" class="items-center" (click)="verProdducto(element.idProduct)"> {{element.idProduct}} </td>
+        </ng-container>
+      
+        <!-- nombre del producto -->
+        <ng-container matColumnDef="Producto">
+            <th mat-header-cell *matHeaderCellDef class="items-center"> Producto </th>
+            <td mat-cell *matCellDef="let element" class="items-center" (click)="verProdducto(element.idProduct)"> {{element.nombre}} </td>
+        </ng-container>
+
+        <!-- columna de imagen
+        <ng-container matColumnDef="Imagen">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Imagen </th>
+          <td mat-cell *matCellDef="let element" class="items-center"> <img src="{{getImg(element.idProduct)}}"
+             width="250" height="150" >
+          </td>
+        </ng-container>-->
+      
+        <!-- Descripcion del producto -->
+        <ng-container matColumnDef="Descripcion">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Descripcion </th>
+          <td mat-cell *matCellDef="let element" class="items-center" (click)="verProdducto(element.idProduct)"> {{element.descripcion}} </td>
+        </ng-container>
+        <!-- Precio por unidad -->
+        <ng-container matColumnDef="precioUnidad">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Precio * Unidad </th>
+          <td mat-cell *matCellDef="let element" class="items-center" (click)="verProdducto(element.idProduct)"> {{element.precioUnidad}} </td>
+        </ng-container>
+        <!-- stock de la tienda -->
+        <ng-container matColumnDef="Stock">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Stock </th>
+          <td mat-cell *matCellDef="let element" class="items-center" (click)="verProdducto(element.idProduct)"> {{element.stock}} </td>
+        </ng-container>
+        <!-- boton editar -->
+        <ng-container matColumnDef="Editar">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Editar </th>
+          <td mat-cell *matCellDef="let element" class="items-center">
+            <button mat-flat-button color="primary" (click)="updateButton(element.idProduct)">
+              <mat-icon>
+                mode_edit
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <!-- noton eliminar -->
+        <ng-container matColumnDef="Eliminar">
+          <th mat-header-cell *matHeaderCellDef class="items-center"> Eliminar </th>
+          <td mat-cell *matCellDef="let element" class="items-center">
+            <button mat-flat-button color="warn" (click)="deleteButton(element.idProduct)">
+              <mat-icon>
+                delete_forever
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" onclick=""></tr>
+      
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay imagenes con esta referencia "{{input.value}}"</td>
+        </tr>
+      </table>
+</div>

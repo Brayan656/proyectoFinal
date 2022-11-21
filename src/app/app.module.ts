@@ -11,6 +11,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddComponent } from './pages/products/add/add.component';
 import { ListComponent } from './pages/products/list/list.component';
+import { EditComponent } from './pages/products/list/edit/edit.component';
+import { SeeComponent } from './pages/products/see/see.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ListComponent } from './pages/products/list/list.component';
     LoginComponent,
     RegistroComponent,
     AddComponent,
-    ListComponent
+    ListComponent,
+    EditComponent,
+    SeeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,9 @@ import { ListComponent } from './pages/products/list/list.component';
     HttpClientModule
   ],
   providers: [],
+  entryComponents:[
+    EditComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

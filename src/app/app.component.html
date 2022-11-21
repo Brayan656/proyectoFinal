@@ -55,12 +55,13 @@
         <span>Facturas</span>
       </button>
       <mat-divider *ngIf="showLogout"></mat-divider>
-      <button  *ngIf="showLogout" mat-menu-item style="cursor: pointer;" routerLink="/add">
+      <!-- *ngIf="showLogout" -->
+      <button   mat-menu-item style="cursor: pointer;" routerLink="/add">
         <mat-icon>library_add</mat-icon>
         <span>Añadir producto</span>
       </button>
       <mat-divider></mat-divider>
-      <button  *ngIf="showLogout" mat-menu-item style="cursor: pointer;" routerLink="/list">
+      <button   mat-menu-item style="cursor: pointer;" routerLink="/list">
         <mat-icon>storage</mat-icon>
         <span>Listar</span>
       </button>

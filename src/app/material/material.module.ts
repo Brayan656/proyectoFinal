@@ -8,6 +8,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -21,6 +24,9 @@ import {MatInputModule} from '@angular/material/input';
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatDialogModule,
   ],
   exports:[
     CommonModule,
@@ -32,6 +38,9 @@ import {MatInputModule} from '@angular/material/input';
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }
