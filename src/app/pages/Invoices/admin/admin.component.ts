@@ -42,11 +42,19 @@ export class AdminComponent implements OnInit {
       if (result.isConfirmed) {
         
         this.invoiceService.deleteInvoice(id).subscribe((data:any)=>{
-          Swal.fire(
-            'Factura eliminada con éxito.',
-            '',
-            'success'
-          )
+          if(data.success){
+            Swal.fire(
+              'Factura eliminada con éxito.',
+              '',
+              'success'
+            )
+          }else{
+            Swal.fire(
+              data.message,
+              '',
+              'error'
+            )
+          }
           this.getInvoice();
         });
 
@@ -54,11 +62,6 @@ export class AdminComponent implements OnInit {
         Swal.fire('Proceso cancelado', '', 'info')
       }
     })
-
-
-
-
-  
   }
 
 }

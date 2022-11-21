@@ -53,6 +53,7 @@ export class AddComponent implements OnInit {
       this.title = "Editar factura N°"+this.invoiceid
       this.invoiceService.getInvoice(this.invoiceid).subscribe((data:any) =>{
         this.form.patchValue(data.invoices);
+        this.getItemById2(this.form.controls['itemid'].value);
       });
     }
   }
@@ -64,7 +65,7 @@ export class AddComponent implements OnInit {
 
   onSave(){
     this.form.controls['invoicetotal'].enable();
-
+    console.log(this.qtyAvailable)
     if(this.form.controls['quantity'].value > this.qtyAvailable ){
       Swal.fire(
         '',
@@ -142,6 +143,22 @@ export class AddComponent implements OnInit {
 
   getItemById(id:any){
     this.productService.productlistById(id.value).subscribe((data:any) => {
+      console.log(data)
+      this.form.controls['unitprice'].setValue(data.precioUnidad);
+      this.qtyAvailable = data.stock;
+      this.productName = data.nombre;
+      Swal.fire(
+        '',
+        `El producto ${data.nombre} tiene ${data.stock} unidades disponibles`,
+        'success'
+      )
+      this.setUnitPrice();
+    })
+  }
+
+  getItemById2(id:any){
+    this.productService.productlistById(id).subscribe((data:any) => {
+      console.log(data)
       this.form.controls['unitprice'].setValue(data.precioUnidad);
       this.qtyAvailable = data.stock;
       this.productName = data.nombre;
