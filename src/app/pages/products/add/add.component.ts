@@ -33,9 +33,8 @@ export class AddComponent implements OnInit {
               private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
-    /*
     if (sessionStorage.getItem(environment.TOKEN) == null){
-      window.alert('Para hacer esto debe iniciar sesión')
+      window.alert('para hacer esto debe iniciar sesión')
       this.router.navigate(['/login'])
     }else{
       this.userService.validateToken(sessionStorage.getItem(environment.TOKEN)).subscribe((data : any) => {
@@ -43,13 +42,12 @@ export class AddComponent implements OnInit {
         if (data.msg){
           console.log('siguiente llamado')
         } else {
-          window.alert('Token inválido')
+          window.alert('token inválido')
           sessionStorage.clear()
           this.router.navigate(['/login']);
         }
       });
     }
-    */
   }
   onSubmit() {  
     
